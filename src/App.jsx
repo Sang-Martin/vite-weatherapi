@@ -56,13 +56,13 @@ function App() {
 
   return (
     <div className="bg-slate-200">
-      <div className="container ">
+      <div className="container py-12">
         {/* title */}
-        <h2 className="font-mono text-5xl mb-20 font-bold">Weather Forcast</h2>
+        <h2 className="font-mono text-5xl mb-20 font-bold">Weather Forecast</h2>
         <div className="form-control w-full max-w-xl mb-16">
           <input
             type="text"
-            className="input input-primary "
+            className="input "
             placeholder="Search city..."
             onChange={(e) => setQuery(e.target.value)}
             value={query}
@@ -71,7 +71,7 @@ function App() {
         </div>
 
         {typeof weather.main != "undefined" ? (
-          <div className="border-2 p-4 rounded-xl flex gap-2 flex-col backdrop-blur-lg bg-gray-200 shadow-lg bg-opacity-50">
+          <div className=" p-4 rounded-xl flex gap-2 flex-col  bg-gradient-to-tr from-sky-300 to-sky-50 shadow-lg bg-opacity-50">
             {/* location */}
             <div>
               <h3 className="font-bold text-lg text-primary">
@@ -80,12 +80,11 @@ function App() {
               <p className="text-sm text-gray-500">{dateBuilder(new Date())}</p>
             </div>
 
-            <div className="mb-4 flex justify-center items-center gap-2">
+            <div className="mb-4 flex justify-center items-center gap-2 flex-wrap">
               <img
                 src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`}
               />
-              {/* <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="" /> */}
-              <p className="text-lg capitalize">
+              <p className="text-lg capitalize font-bold">
                 {weather.weather[0].description}
               </p>
             </div>
@@ -97,12 +96,12 @@ function App() {
               </div>
               <div>
                 <h4 className="text-gray-500 text-sm">Feels like</h4>
-                <p className="text-4xl">{weather.main.feels_like}°c</p>
+                <p className="text-4xl">{Math.round(weather.main.feels_like)}°c</p>
               </div>
 
               <div>
-                <h4 className="text-gray-500 text-sm">Wind</h4>
-                <p className="text-4xl">{weather.wind.speed} km/h</p>
+                <h4 className="text-gray-500 text-sm">Wind speed</h4>
+                <p className="text-4xl">{Math.round(weather.wind.speed)} km/h</p>
               </div>
 
               <div>
