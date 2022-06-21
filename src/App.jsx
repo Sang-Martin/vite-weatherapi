@@ -55,62 +55,66 @@ function App() {
   };
 
   return (
-    <div className="container bg-slate-200">
-      {/* title */}
-      <h2 className="font-mono text-5xl mb-20 font-bold">Weather Forcast</h2>
-      <div className="form-control w-full max-w-xl mb-16">
-        <input
-          type="text"
-          className="input input-primary "
-          placeholder="Search city..."
-          onChange={(e) => setQuery(e.target.value)}
-          value={query}
-          onKeyPress={search}
-        />
-      </div>
-
-      {typeof weather.main != "undefined" ? (
-        <div className="border-2 p-4 rounded-xl flex gap-2 flex-col backdrop-blur-lg bg-gray-200 shadow-lg bg-opacity-50">
-          {/* location */}
-          <div>
-            <h3 className="font-bold text-lg text-primary">
-              {weather.name}, {weather.sys.country}
-            </h3>
-            <p className="text-sm text-gray-500">{dateBuilder(new Date())}</p>
-          </div>
-
-          <div className='mb-4 flex justify-center items-center gap-2'>
-            <img
-              src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`}
-            />
-            {/* <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="" /> */}
-            <p className="text-lg capitalize">{weather.weather[0].description}</p>
-          </div>
-
-          <div className="grid md:grid-cols-2 col gap-4 mt-4 gap-x-12">
-            <div>
-              <h4 className="text-gray-500 text-sm">Temperature</h4>
-              <p className="text-4xl">{Math.round(weather.main.temp)}°c</p>
-            </div>
-            <div>
-              <h4 className="text-gray-500 text-sm">Feels like</h4>
-              <p className="text-4xl">{weather.main.feels_like}°c</p>
-            </div>
-
-            <div>
-              <h4 className="text-gray-500 text-sm">Wind</h4>
-              <p className="text-4xl">{weather.wind.speed} km/h</p>
-            </div>
-
-            <div>
-              <h4 className="text-gray-500 text-sm">Humidity</h4>
-              <p className="text-4xl">{weather.main.humidity} %</p>
-            </div>
-          </div>
+    <div className="bg-slate-200">
+      <div className="container ">
+        {/* title */}
+        <h2 className="font-mono text-5xl mb-20 font-bold">Weather Forcast</h2>
+        <div className="form-control w-full max-w-xl mb-16">
+          <input
+            type="text"
+            className="input input-primary "
+            placeholder="Search city..."
+            onChange={(e) => setQuery(e.target.value)}
+            value={query}
+            onKeyPress={search}
+          />
         </div>
-      ) : (
-        ""
-      )}
+
+        {typeof weather.main != "undefined" ? (
+          <div className="border-2 p-4 rounded-xl flex gap-2 flex-col backdrop-blur-lg bg-gray-200 shadow-lg bg-opacity-50">
+            {/* location */}
+            <div>
+              <h3 className="font-bold text-lg text-primary">
+                {weather.name}, {weather.sys.country}
+              </h3>
+              <p className="text-sm text-gray-500">{dateBuilder(new Date())}</p>
+            </div>
+
+            <div className="mb-4 flex justify-center items-center gap-2">
+              <img
+                src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`}
+              />
+              {/* <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="" /> */}
+              <p className="text-lg capitalize">
+                {weather.weather[0].description}
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 col gap-4 mt-4 gap-x-12">
+              <div>
+                <h4 className="text-gray-500 text-sm">Temperature</h4>
+                <p className="text-4xl">{Math.round(weather.main.temp)}°c</p>
+              </div>
+              <div>
+                <h4 className="text-gray-500 text-sm">Feels like</h4>
+                <p className="text-4xl">{weather.main.feels_like}°c</p>
+              </div>
+
+              <div>
+                <h4 className="text-gray-500 text-sm">Wind</h4>
+                <p className="text-4xl">{weather.wind.speed} km/h</p>
+              </div>
+
+              <div>
+                <h4 className="text-gray-500 text-sm">Humidity</h4>
+                <p className="text-4xl">{weather.main.humidity} %</p>
+              </div>
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+      </div>
     </div>
   );
 }
